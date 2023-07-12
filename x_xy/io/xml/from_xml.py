@@ -106,7 +106,7 @@ def _initial_setup(xml_tree):
 
 
 DEFAULT_GRAVITY = jnp.array([0, 0, 9.81])
-DEFAULT_DT = 0.01
+DEFAULT_DT = jnp.array(0.01, dtype=float)
 
 
 def load_sys_from_str(xml_str: str, prefix: str = ""):

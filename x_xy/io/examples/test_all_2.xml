@@ -1,0 +1,37 @@
+<x_xy model="all_2">
+    <options gravity="0 0 9.81" dt="0.01"/>
+    <defaults>
+        <geom dim="1 10 4" mass="2" vispy_edge_color="black" vispy_color="white"/>
+    </defaults>
+    <worldbody>
+        <body name="ry" pos="2 0 0" euler="0 90 0" joint="ry" damping="2"> <!-- NEEDS TO DIFFER FROM test_all_0&1 -> pos 2 0 0 -->
+            <geom type="box"/>
+
+            <body name="px" joint="px" pos="5.0 0 1">
+                <geom type="box"/>
+
+                <body name="py" joint="py" pos="1 1 1">
+                    <geom type="box"/>
+
+                    <body name="pz" joint="pz" pos="1 10 2">
+                        <geom type="box"/>
+                    </body>
+                </body>
+            </body>
+        </body>
+        <body name="rx" pos="0 0 0" euler="0 90 0" joint="rx" damping="1">
+            <geom type="box"/>
+
+            <body name="frozen" joint="frozen" pos="5.0 0 1">
+                <geom type="box"/>
+            </body>
+        </body>
+        <body name="rz" pos="0 0 0" euler="0 90 0" joint="rz" damping="1">
+            <geom type="box"/>
+
+            <body name="free" joint="free" pos="0.5 0 0">
+                <geom type="box"/>
+            </body>
+        </body>
+    </worldbody>
+</x_xy>

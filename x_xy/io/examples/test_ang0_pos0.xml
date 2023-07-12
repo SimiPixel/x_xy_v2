@@ -1,5 +1,6 @@
 <x_xy model="test_ang0_pos0">
     <worldbody>
+        <options dt="0.01" gravity="0.0 0.0 9.81"/>
         <body name="px" joint="px">
             <body name="rx" joint="ry">
             </body>

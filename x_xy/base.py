@@ -5,6 +5,7 @@ import jax.numpy as jnp
 import tree_utils as tu
 from flax import struct
 from jax.tree_util import tree_map
+import numpy as np
 
 from x_xy import maths
 
@@ -422,6 +423,25 @@ class System(_Base):
 
     def change_model_name(self, name: str) -> "System":
         return self.replace(model_name=name)
+
+    @staticmethod
+    def deep_equal(a, b):
+        print("Comparing: a ", type(a), " b ", type(b))
+        if type(a) is not type(b):
+            return False
+        if isinstance(a, _Base):
+            return System.deep_equal(a.__dict__, b.__dict__)
+        if isinstance(a, dict):
+            if a.keys() != b.keys():
+                return False
+            return all(System.deep_equal(a[k], b[k]) for k in a.keys())
+        if isinstance(a, (list, tuple)):
+            if len(a) != len(b):
+                return False
+            return all(System.deep_equal(a[i], b[i]) for i in range(len(a)))
+        if isinstance(a, (np.ndarray, jnp.ndarray, jax.Array)):
+            return jnp.array_equal(a, b)
+        return a == b
 
 
 @struct.dataclass
